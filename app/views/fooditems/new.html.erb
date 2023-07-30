@@ -1,0 +1,21 @@
+<h3> New Food Items </h3>
+<%= form_with model:[@restaurant , @fooditem] do |form| %>
+ 
+ <div class= "form-group">
+   <%= form.label :name %>
+   <%= form.text_field :name ,class: "form-control" %>
+ </div>
+
+ <div class="form-group">
+  <%= form.label :description%>
+  <%= form.text_field :description ,class:"form-control" %>
+ </div>
+
+ <div class="form-group">
+  <%= form.label :price %>
+  <%= form.text_field :price ,class: "form-control" %>
+ </div>
+
+<%= form.submit "create food Items", class: "btn btn-primary" %>
+<% end %>
+ 

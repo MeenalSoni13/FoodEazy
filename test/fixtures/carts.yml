@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  useri_id: 1
+  cuisine_id: 1
+
+two:
+  useri_id: 1
+  cuisine_id: 1

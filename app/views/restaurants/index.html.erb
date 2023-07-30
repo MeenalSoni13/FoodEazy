@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+  <div class="container">
+    <h1>All Restaurant</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Restaurant Name</th>
+          <th>Description</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @restaurants.each do |rest| %>
+          <tr>
+            <td><%= rest.name %></td>
+            <td><%= rest.description %></td>
+            <td><%= rest.address %></td>
+            <td class="d-flex">
+              <% if current_user.admin? %>
+                <%= link_to "view fooditems",restaurant_fooditems_path(rest), class:"btn btn-outline-primary mr-1" %>
+                <%= link_to "update restaurant", edit_restaurant_path(rest), class: "btn btn-outline-primary mr-1" %>
+                <%= button_to "Delete restaurant", restaurant_path(rest.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary mr-1" %></td>
+            <% else %>
+              <%= link_to "Menu",restaurant_fooditems_path(rest), class: "btn btn-primary" %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <div class="text-center">
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%= page_entries_info @restaurants %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+<h3> Food Items </h3>
+<table class="table table-striped">
+ <thead> 
+  <tr>
+   <th>Name</th>
+   <th>Description</th>
+   <th>Price</th>
+   <th>Actions</th>
+  </tr>
+</thead>
+<tbody>
+ <% @fooditems.each do |fooditem| %>
+  <tr> 
+   <td><%= fooditem.name %></td>
+   <td><%= fooditem.description %></td>
+   <td><%= fooditem.price %></td>
+  <td>
+    <% if current_user.admin? %>
+   <%= link_to "create footitem", new_restaurant_fooditem_path(@restaurant) , class:"btn btn-outline-primary mr-1" %>
+   <%= link_to "Edit", edit_restaurant_fooditem_path(@restaurant, fooditem) , class:"btn btn-outline-primary mr-1" %>
+   <%= button_to "Delete",new_restaurant_fooditem_path(@restaurant, fooditem), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-outline-primary mr-1" %>
+   <%else%>
+   <%= button_to "add", cart_cartitems_path(current_user.cart, fooditem_id: fooditem.id), method: :post,  class:"btn btn-outline-primary mr-1" %>
+  </td>
+ </tr>
+ <% end %>
+<% end%>
+</tbody>
+</table>
+ </div>

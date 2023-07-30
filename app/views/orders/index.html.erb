@@ -1,0 +1,33 @@
+<% if user_signed_in? %>
+  <h1>Orders Details</h1>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>S.no</th>
+          <th>Address</th>
+          <th>Price</th>
+          
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= @orders.index(order) + 1 %></td>
+            <td><%= order.address %></td>
+            <td><%= order.total_price %></td>
+          
+            <% if current_user.admin? %>
+              <td><%= link_to "approve", order_orders_confirmed_path(order), class: "btn btn-success" %>
+                <%= link_to "reject", order_orders_rejected_path(order) ,method: :rejected, class: "btn btn-danger" %></td>
+            <% else %>
+              <td>
+              <%= link_to "Cancel order", "#", method: :cancelled , class: "btn btn-danger" %>
+              </td>
+            </tr>
+      </tbody>
+      </table>
+          <%end%>
+        <%end%>
+      <%end%>
+      

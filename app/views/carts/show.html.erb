@@ -1,0 +1,57 @@
+<div class="container">
+  <h1> My order</h1>
+  <td><%= link_to "checkout", new_order_path(restaurant_id: @restaurant_id, fooditem_ids: @cart_items.pluck(:fooditem_id)), class: "btn btn-success" %></td>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> S.no </th>
+        <th> Food Name </th>
+        <th> Price </th>
+        <th> Quantity </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= @cart_items.index(cart_item) + 1 %></td>
+          <td><%= cart_item.fooditem.name %></td>
+          <td><%= cart_item.fooditem.price %></td>
+          <td>
+            <%= button_to "+", cart_cartitem_path(cart_item.cart, cart_item, context: 'add'), method: :patch, class: "btn btn-success" %>
+            <%= number_field_tag "quantity", cart_item.quantity, min: 1, class: "quantity-input", data: { price: cart_item.fooditem.price } %>
+            <% if cart_item.quantity > 1 %>
+              <%= button_to "-", cart_cartitem_path(cart_item.cart, cart_item, context: 'delete'), method: :patch, class: "btn btn-success" %>
+            <% end %>
+          </td>
+          <td>
+            <%= button_to "remove", cart_cartitem_path(cart_item.cart, cart_item), method: :delete, class: "btn btn-success" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add this JavaScript code at the bottom of your view -->
+<script>
+  $(document).ready(function() {
+    // Function to update the price based on quantity
+    function updatePrice() {
+      $('.quantity-input').each(function() {
+        const quantity = parseInt($(this).val());
+        const price = parseFloat($(this).data('price'));
+        const totalPrice = quantity * price;
+        const priceCell = $(this).closest('tr').find('.price-cell');
+        priceCell.text(totalPrice.toFixed(2));
+      });
+    }
+
+    // Call the updatePrice function on page load
+    updatePrice();
+
+    // Listen for changes in the quantity input fields
+    $('.quantity-input').on('input', function() {
+      updatePrice();
+    });
+  });
+</script>

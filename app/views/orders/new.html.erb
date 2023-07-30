@@ -1,0 +1,15 @@
+ <%#= link_to "show all order" , order_path(order.id), :method :patch, class:"btn btn-primary"  %>
+<div class="container">
+  <h3>orders list</h3>
+  <%= form_with model: @order do |order| %>
+    <%= order.hidden_field :fooditem_ids, value: params[:fooditem_ids] %>
+     <%= order.hidden_field :restaurant_id, value: params[:restaurant_id] %>
+    <div class="form-group">
+      <%= order.label :address%>
+      <%= order.text_field :address ,class: "form-control"%>
+    </div>
+
+    <%= order.submit "submit your order", class:"btn btn-primary" %>
+  <% end %>
+</div>
+<%#= link_to "show all order" , orders_path ,class:"btn btn-primary" %>
