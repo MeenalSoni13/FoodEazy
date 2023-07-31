@@ -32,26 +32,3 @@
   </table>
 </div>
 
-<!-- Add this JavaScript code at the bottom of your view -->
-<script>
-  $(document).ready(function() {
-    // Function to update the price based on quantity
-    function updatePrice() {
-      $('.quantity-input').each(function() {
-        const quantity = parseInt($(this).val());
-        const price = parseFloat($(this).data('price'));
-        const totalPrice = quantity * price;
-        const priceCell = $(this).closest('tr').find('.price-cell');
-        priceCell.text(totalPrice.toFixed(2));
-      });
-    }
-
-    // Call the updatePrice function on page load
-    updatePrice();
-
-    // Listen for changes in the quantity input fields
-    $('.quantity-input').on('input', function() {
-      updatePrice();
-    });
-  });
-</script>
