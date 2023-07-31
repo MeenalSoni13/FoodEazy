@@ -15,9 +15,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.user_id = current_user.id
     @order.total_price = Fooditem.where(id: params[:order][:fooditem_ids]).pluck(:price).sum
-
     if @order.save
       UserMailer.send_email(current_user.email, @order).deliver_now
+      
       @order.update(status: :Pending)
       flash[:success] = "Thank you for your order"
       redirect_to @order

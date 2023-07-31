@@ -81,6 +81,7 @@ GEM
       will_paginate
     builder (3.2.4)
     byebug (11.1.3)
+    cancancan (3.5.0)
     capybara (3.39.2)
       addressable
       matrix
@@ -102,6 +103,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-otp (0.6.0)
+      devise (>= 4.8.0, < 5.0)
+      rails (>= 6.1, < 7.2)
+      rotp (>= 2.0.0)
     erubi (1.12.0)
     execjs (2.8.1)
     ffi (1.15.5)
@@ -200,6 +205,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rotp (6.2.2)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -259,9 +265,11 @@ DEPENDENCIES
   bootstrap-sass
   bootstrap-will_paginate
   byebug
+  cancancan
   capybara
   debug
   devise
+  devise-otp (~> 0.6.0)
   htmlbeautifier
   importmap-rails
   jbuilder
