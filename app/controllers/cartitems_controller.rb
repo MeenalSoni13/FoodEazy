@@ -17,6 +17,7 @@ class CartitemsController < ApplicationController
 
   def update
     if params[:context] == "add"
+      flash[:notice] = "fooditems succssfully added"
       @cartitem.update(quantity: @cartitem.quantity + 1)
     elsif params[:context] == "delete" && @cartitem.quantity > 1
       quantity = @cartitem.quantity - 1
@@ -33,9 +34,6 @@ class CartitemsController < ApplicationController
     @cartitem = Cartitem.find(params[:id])
     @cartitem.destroy
     redirect_to request.referrer
-  end
-
-  def remove
   end
 
   private

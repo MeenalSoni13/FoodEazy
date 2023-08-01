@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:show, :confirmed, :rejected, :cancelled]
+   before_action :find_order, only: [:show]
 
   def index 
   @orders = current_user.orders
@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     if @order.save
       UserMailer.send_email(current_user.email, @order).deliver_now
       
-      @order.update(status: :Pending)
+      # @order.update(status: :Pending)
       flash[:success] = "Thank you for your order"
       redirect_to @order
     else
@@ -31,24 +31,25 @@ class OrdersController < ApplicationController
      @status = @order.status
   end
 
-  def confirmed
-    @order = Order.find(params[:order_id])
-    @order.update(status: :Confirmed)
-    lash[:success] = "your order has been Confirmed"
-    redirect_to request.referrer
-  end
+  # def confirmed
+  #   @order = Order.find(params[:order_id])
+  #   @order.update(status: :Confirmed)
+  #   lash[:success] = "your order has been Confirmed"
+  #   redirect_to request.referrer
+  # end
 
-  def rejected
-    @order.update(status: :Rejected)
-    flash[:success] = "Your order has been Rejected"
-    redirect_to request.referrer
-  end
+  # def rejected
+  #   @order.update(status: :Rejected)
+  #   flash[:success] = "Your order has been Rejected"
+  #   redirect_to request.referrer
+  # end
 
-  def cancelled
-    @order = Order.find(params[:id]) # Use params[:id] here
-    @order.update(status: :Cancelled)
-    flash[:success] = "Your order has been cancelled"
-    redirect_to request.referrer
+  def destroy
+    @order = current_order
+    @order_item = @order.cart_items.find(params[:id])
+    @order_item.destroy
+    @order_items = current_order.order_items
+    redirect_to cart_items_path, notice: 'Order item was successfully remove.'
   end
 
   private
