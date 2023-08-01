@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :payments
-  # get 'messages/index'
+  resources :payments,only: [:create]
+  post "payment/create", to: "checkout#create"
   resources :rooms do
     resources :messages
   end  

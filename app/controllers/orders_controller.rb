@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-   before_action :find_order, only: [:show]
+  before_action :find_order, only: [:show]
 
   def index 
   @orders = current_user.orders

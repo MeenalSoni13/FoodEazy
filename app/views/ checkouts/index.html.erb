@@ -1,0 +1,22 @@
+<%= form_with(model: [@fooditem, @checkout], local: true) do |form| %>
+  <%= form.hidden_field :course_id, value: @course %>
+
+  <div class="field">
+    <%= form.label :cardNumber, "Card Number:" %>
+    <%= form.text_field :cardNumber, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiryDate, "Expiry Date:" %>
+    <%= form.text_field :expiryDate, required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cvv, "CVV:" %>
+    <%= form.text_field :cvv, required: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Enroll & Pay" %>
+  </div>
+<% end %>
