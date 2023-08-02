@@ -1,6 +1,7 @@
 class FooditemsController < ApplicationController
   before_action :set_restaurant
   before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @fooditems = @restaurant.fooditems
@@ -20,6 +21,7 @@ class FooditemsController < ApplicationController
     else
       render :new
     end
+
   end
 
   def edit

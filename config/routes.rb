@@ -22,11 +22,6 @@ end
 
   root "homes#index"
 
-  #resources: restaurants , as: "user_restaurant", path: "users/:user_id/restaurant"
-  #get '/orders/confirmed', to: 'orders#confirmed'
-  #get '/orders/pending', to: 'orders#pending'
-  #get '/orders/cancelled', to: 'orders#cancelled'
-
 
   resource :cart, only: [:show], as: "user_cart", path: "users/:user_id/cart"
 
