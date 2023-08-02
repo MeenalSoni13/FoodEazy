@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-  def show
   
+  def show
     @cart_items = current_user.cart.cartitems
     if @cart_items.exists?
       @restaurant_id = @cart_items.first.fooditem.restaurant_id

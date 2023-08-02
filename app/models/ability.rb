@@ -8,6 +8,7 @@ class Ability
   if user.admin?
     can :manage, Restaurant
     can :manage, Fooditem
+    
   else 
     can :read, Restaurant
     can :read, Fooditem

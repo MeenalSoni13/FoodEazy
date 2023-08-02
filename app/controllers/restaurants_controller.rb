@@ -1,13 +1,12 @@
 class RestaurantsController < ApplicationController
- before_action :authenticate_user!,only: [:edit,:update,:destroy]
- load_and_authorize_resource
+  before_action :set_product, only: [:destroy, :edit, :show, :update]
+  load_and_authorize_resource
  
   def index
-    @restaurants = Restaurant.all.paginate(page: params[:page], :per_page =>5)
+    @restaurants = Restaurant.all.paginate(page: params[:page], :per_page =>10)
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def new
@@ -24,11 +23,9 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find_by(params[:id])
     if @restaurant.update(params_restaurant)
       redirect_to @restaurant, notice: "Restaurant updated successfully"
     else
@@ -37,7 +34,6 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
     @restaurant.destroy
     redirect_to restaurant_url
   end
@@ -46,5 +42,9 @@ class RestaurantsController < ApplicationController
 
   def params_restaurant
     params.require(:restaurant).permit(:name, :description, :address)
+  end
+
+  def set_product
+    @restaurant = Restaurant.find(params[:id])
   end
 end

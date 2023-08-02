@@ -1,23 +1,19 @@
 Rails.application.routes.draw do
+
   resources :payments,only: [:create]
   post "payment/create", to: "checkout#create"
+
   resources :rooms do
     resources :messages
   end  
-  # end  
+  
   devise_for :users
-  # devise_scope :users do
-  
-  
- resources :orders
- 
-  resources :cartitems do  
-   resources :orders do
-     get "/orders/confirmed"
-     get "/orders/cancelled"
-     get "/orders/rejected"
-  end
-end
+  resources :orders
+
+#   resources :cartitems do  
+#    resources :orders do
+#   end
+# end
 
 
   root "homes#index"

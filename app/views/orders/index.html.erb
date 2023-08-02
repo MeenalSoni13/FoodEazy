@@ -6,7 +6,8 @@
         <th>S.no</th>
         <th>Address</th>
         <th>Price</th>
-        <th>Actions</th>
+        <th>Action</th>
+        <th>Action1</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +18,7 @@
           <td><%= order.total_price %></td>
           <td><%= button_to "payment", payment_create_path, params: { id: order.id }, remote: true %></td>
           <td>
-            <%= button_to "Cancel Order", "#", method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <%= button_to "Delete Order", order_path(order.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>
         </tr>
       <% end %>
