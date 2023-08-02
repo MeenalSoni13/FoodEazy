@@ -6,6 +6,7 @@ class User < ApplicationRecord
   after_create :set_cart
   scope :all_except, ->(user) { where.not(id: user) }
   after_create_commit { broadcast_append_to 'users' }
+  
   has_many :messages
   private
    

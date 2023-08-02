@@ -14,7 +14,6 @@
         <tr>
           <td><%= @orders.index(order) + 1 %></td>
           <td><%= order.address %></td>
-          <% byebug %>
           <td><%= order.total_price %></td>
           <td><%= button_to "payment", payment_create_path, params: { id: order.id }, remote: true %></td>
           <td>

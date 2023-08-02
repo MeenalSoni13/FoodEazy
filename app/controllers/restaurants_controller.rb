@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
  before_action :authenticate_user!,only: [:edit,:update,:destroy]
- load_and_authorize_resource
+ 
   def index
     @restaurants = Restaurant.all.paginate(page: params[:page], :per_page =>5)
   end
