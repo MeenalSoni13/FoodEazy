@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :set_product, only: [:destroy, :edit, :show, :update]
-  load_and_authorize_resource
+  # load_and_authorize_resource
  
   def index
     @restaurants = Restaurant.all.paginate(page: params[:page], :per_page =>10)
