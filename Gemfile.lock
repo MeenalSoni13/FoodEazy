@@ -66,7 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    addressable (2.8.4)
+    addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
@@ -103,14 +103,16 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-otp (0.6.0)
-      devise (>= 4.8.0, < 5.0)
-      rails (>= 6.1, < 7.2)
-      rotp (>= 2.0.0)
+    diff-lcs (1.5.0)
     erubi (1.12.0)
     execjs (2.8.1)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
-    ffi (1.15.5-x64-unknown)
+    ffi (1.15.5-x64-mingw-ucrt)
     globalid (1.1.0)
       activesupport (>= 5.0)
     htmlbeautifier (1.4.2)
@@ -145,6 +147,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.4)
     minitest (5.19.0)
     msgpack (1.7.2)
     net-imap (0.3.7)
@@ -157,16 +160,15 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.3-x64-unknown)
-      racc (~> 1.4)
-    nokogiri (1.15.3-x86_64-linux)
+    nokogiri (1.15.3)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
-    rack (2.2.7)
+    rack (2.2.8)
     rack-test (2.1.0)
       rack (>= 1.3)
     rails (7.0.6)
@@ -205,11 +207,27 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
-    rotp (6.2.2)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.6)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.3)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
-    selenium-webdriver (4.10.0)
+    selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -220,8 +238,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.3-x64-unknown)
-    sqlite3 (1.6.3-x86_64-linux)
+    sqlite3 (1.6.3)
+      mini_portile2 (~> 2.8.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     stripe (8.6.0)
@@ -233,8 +251,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2023.3)
-      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -253,7 +269,7 @@ GEM
     will_paginate (4.0.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.9)
+    zeitwerk (2.6.11)
 
 PLATFORMS
   x64-unknown
@@ -269,7 +285,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  devise-otp (~> 0.6.0)
+  factory_bot_rails
   htmlbeautifier
   importmap-rails
   jbuilder
@@ -277,6 +293,7 @@ DEPENDENCIES
   letter_opener
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  rspec-rails
   selenium-webdriver
   sprockets-rails
   sqlite3
@@ -289,7 +306,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.2p107
 
 BUNDLED WITH
    2.4.14
