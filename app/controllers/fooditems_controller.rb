@@ -4,7 +4,12 @@ class FooditemsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @fooditems = @restaurant.fooditems
+    if params[:q].present?
+      @fooditems = @restaurant.fooditems.where("name LIKE ?", "%#{params[:q]}%")
+    else
+      @fooditems = @restaurant.fooditems
+    end
+    @fooditems = @fooditems.paginate(page: params[:page], per_page: 10)
   end
 
   def show

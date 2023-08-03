@@ -1,34 +1,39 @@
-<% if user_signed_in? %>
-  <div class="container">
-    <h1>All Restaurant</h1>
-    <table class="table table-dark table-striped">
-      <thead>
-        <tr>
-          <th>Restaurant Name</th>
-          <th>Description</th>
-          <th>Address</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @restaurants.each do |rest| %>
-          <tr>
-            <td><%= rest.name %></td>
-            <td><%= rest.description %></td>
-            <td><%= rest.address %></td>
-            <td class="d-flex">
-              <% if current_user.admin? %>
-                <%= link_to "view fooditems",restaurant_fooditems_path(rest), class:"btn btn-outline-primary mr-1" %>
-                <%= link_to "update restaurant", edit_restaurant_path(rest), class: "btn btn-outline-primary mr-1" %>
-                <%= button_to "Delete restaurant", restaurant_path(rest.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary mr-1" %></td>
-            <% else %>
-              <%= link_to "Menu",restaurant_fooditems_path(rest), class: "btn btn-primary" %>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class="container">
+  <h1>All Restaurants</h1>
+
+  <%= form_tag(restaurants_path, method: :get, class: 'd-flex') do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Search...", class: "form-control me-2" %>
+    <%= submit_tag "Search", class: "btn btn-outline-primary" %>
   <% end %>
+
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>Restaurant Name</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restaurants.each do |rest| %>
+        <tr>
+          <td><%= rest.name %></td>
+          <td><%= rest.description %></td>
+          <td><%= rest.address %></td>
+          <td class="d-flex">
+            <% if current_user.admin? %>
+              <%= link_to "View Food Items", restaurant_fooditems_path(rest), class: "btn btn-outline-primary mr-1" %>
+              <%= link_to "Update Restaurant", edit_restaurant_path(rest), class: "btn btn-outline-primary mr-1" %>
+              <%= button_to "Delete Restaurant", restaurant_path(rest), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-primary mr-1" %>
+            <% else %>
+              <%= link_to "Menu", restaurant_fooditems_path(rest), class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="text-center">
     <div class="digg_pagination">
